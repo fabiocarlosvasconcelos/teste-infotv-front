@@ -1,14 +1,17 @@
 var listMovies = Vue.component("ListMovies", {
     template: `<div>
-                  <b-table striped hover :fields="fields" :items="items"></b-table>
-                  <b-alert variant="success" :show="showAlert">{{ info }}</b-alert>
+                  <b-card class="mt-3" header="Filmes">
+                    <b-table striped hover :fields="fields" :items="items"></b-table>
+                    <b-alert show variant="danger" v-if="error"><pre class="m-0">{{info}}</pre></b-alert>
+                  </b-card>
                 </div>`,
     props: ["title"],
     data() {
       return {
           fields: ['name', 'file', 'file_size'],
           items : null,
-          info: null
+          info: null,
+          error: false,
         
       }
     },
@@ -30,19 +33,24 @@ var listMovies = Vue.component("ListMovies", {
 
         //console.log(store.state.token);
 
-        axios.get('http://172.24.91.85/api/v1/movies?order=ASC', config)
+        axios.get(url+'/api/v1/movies?order=ASC', config)
         .then(response => {
 
-            var d = response.data.data;
+            if(response.data.error == undefined){
 
-            //console.log(d);
+              var d = response.data.data;
+              this.items =  d;
 
-            if(d.erro != 'indefined'){
-                this.items =  d;
+            } else {
+               this.info = response.data.error;
+               this.error = true;
             }
 
-            
-        })
+        }).catch(function (error) {
+            console.log(error)
+            this.info = "erro";
+            this.error = true;
+        });
         
       }
       

@@ -37,10 +37,6 @@
   <div id="app">
     <b-container>
 
-      <b-jumbotron header="Teste InfoTV" lead="">
-
-      </b-jumbotron>
-
       <div>
         <b-navbar toggleable="lg" type="dark" variant="dark">
           <b-navbar-brand>
@@ -54,10 +50,10 @@
               <b-nav-item>
                 <router-link to="/register">Registro</router-link>
               </b-nav-item>
-              <b-nav-item>
+              <b-nav-item v-if="logged">
                 <router-link to="/movies">Movies</router-link>
               </b-nav-item>
-              <b-nav-item>
+              <b-nav-item v-if="logged">
                 <router-link to="/new-movie">Adicionar Filme</router-link>
               </b-nav-item>
             </b-navbar-nav>
@@ -106,21 +102,6 @@
     const store = new Vuex.Store({
       state: {
         token: ''
-      },
-      getters: {
-        getToken: state => {
-          return token;
-        }
-      },
-      mutations: {
-        setToken(state, value) {
-          state.myVariable.push(value)
-        }
-      },
-      actions: {
-        setToken(context) {
-          context.commit('setToken');
-        }
       }
     });
 
@@ -129,7 +110,8 @@
       router,
       data: {
         user: 'Usuário',
-        info: null
+        info: null,
+        logged:false
       },
       created() {
 

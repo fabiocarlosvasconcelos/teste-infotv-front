@@ -38,7 +38,7 @@ var login = Vue.component("Login", {
         email: '',
         password: ''
       },
-      info: 'teste',
+      info: '',
       error: false
     }
   },
@@ -77,11 +77,10 @@ var login = Vue.component("Login", {
             this.error = true;
             this.info = response.data.error;
           }
-      }).catch(function (error) {
+      }).catch(error => {
           console.log(error);
           this.error = true;
           this.info = error;
-          //this.info = error;
       });
 
     },

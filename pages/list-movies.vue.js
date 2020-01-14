@@ -46,9 +46,9 @@ var listMovies = Vue.component("ListMovies", {
                this.error = true;
             }
 
-        }).catch(function (error) {
+        }).catch(error => {
             console.log(error)
-            this.info = "erro";
+            this.info = "Erro o tentar listas os filmes";
             this.error = true;
         });
         

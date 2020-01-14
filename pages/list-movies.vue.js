@@ -1,14 +1,19 @@
 var listMovies = Vue.component("ListMovies", {
     template: `<div>
                   <b-card class="mt-3" header="Filmes">
-                    <b-table striped hover :fields="fields" :items="items"></b-table>
+                    <b-table striped hover :fields="fields" :items="items">
+                    <template v-slot:cell(id)="data">
+                         <router-link to="/edit-movie">Editar</router-link>
+                    </template>
+                    
+                    </b-table>
                     <b-alert show variant="danger" v-if="error"><pre class="m-0">{{info}}</pre></b-alert>
                   </b-card>
                 </div>`,
     props: ["title"],
     data() {
       return {
-          fields: ['name', 'file', 'file_size'],
+          fields: ['id', 'name', 'file', 'file_size'],
           items : null,
           info: null,
           error: false,

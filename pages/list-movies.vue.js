@@ -41,7 +41,7 @@ var listMovies = Vue.component("ListMovies", {
 
         //console.log(store.state.token);
 
-        axios.get(url+'/api/v1/movies?order=ASC', config)
+        axios.get(url+'movies?order=ASC', config)
         .then(response => {
 
             if(response.data.error == undefined){

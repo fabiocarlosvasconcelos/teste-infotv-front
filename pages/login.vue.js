@@ -52,7 +52,7 @@ var login = Vue.component("Login", {
 
       axios({
         method: 'post',
-        url: url+'/api/v1/token',
+        url: url+'token',
         data: {
           email: this.form.email,
           password: this.form.password

@@ -28,6 +28,7 @@ var register = Vue.component("NewUSer", {
                           id="input-2"
                           v-model="form.password"
                           type="password"
+                          minlength="6"
                           required
                           placeholder="Insira sua senha"
                         ></b-form-input>
@@ -38,6 +39,7 @@ var register = Vue.component("NewUSer", {
                           id="input-3"
                           v-model="form.password_confirmation"
                           type="password"
+                          minlength="6"
                           required
                           placeholder="Confirme sua senha"
                         ></b-form-input>
@@ -71,7 +73,7 @@ var register = Vue.component("NewUSer", {
 
       axios({
         method: 'post',
-        url: url + '/api/v1/users',
+        url: url + 'users',
         data: {
           name: this.form.name,
           email: this.form.email,

@@ -16,6 +16,7 @@ var listMovies = Vue.component("ListMovies", {
       }
     },
     created() {
+      //chama o método na criação componente
       this.listMovies();
     },
     computed: {
@@ -25,10 +26,12 @@ var listMovies = Vue.component("ListMovies", {
     },
     methods: {
 
+      //busca os filmes na api a atribui ao componete de tabela
       listMovies() {
 
+        //configura o cabeçado com o token
         var config = {
-            headers: {Authorization: 'Bearer ' + store.state.token}
+            headers: {Authorization: 'Bearer ' + window.app.token}
         };
 
         //console.log(store.state.token);

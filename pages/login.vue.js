@@ -67,9 +67,14 @@ var login = Vue.component("Login", {
             var d = resp.data;
 
             if(d.status == 'success'){
-              store.state.token = d.token;
+
+              localStorage.token = d.token;
               window.app.user = d.user;
+              window.app.logged = true;
+
+              //redireciona para a lista de filmes
               this.$router.push('/movies')
+
             }
             
           } else {

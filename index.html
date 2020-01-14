@@ -92,29 +92,24 @@
       { path: '/register', component: register },
       { path: '/movies', component: listMovies },
       { path: '/new-movie', component: newMovie },
-      { path: '/edit-movie', component: editMovie },
+      { path: '/edit-movie:id', component: editMovie },
     ]
 
     const router = new VueRouter({
       routes
     })
 
-    const store = new Vuex.Store({
-      state: {
-        token: ''
-      }
-    });
-
+    
     window.app = new Vue({
       el: '#app',
-      router,
       data: {
         user: 'Usuário',
         info: null,
-        logged:false
+        logged: false,
+        token: ''
       },
       created() {
-
+        this.loadToken()
       },
       computed: {
         showAlert() {
@@ -122,11 +117,17 @@
         }
       },
       mounted() {
-
+        
       },
       methods: {
-
-      }
+        /*carrega o valor do token localStorage*/
+        loadToken() {
+          if (localStorage.token) {
+            this.token = localStorage.token;
+          }
+        }
+      },
+      router
     })
   </script>
 </body>

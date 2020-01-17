@@ -18,7 +18,8 @@ No arquivo /js/config.js congure o endpoind base da api conforme o exemplo:
 
 ```
 var config = {
-    url: "http://172.24.91.85/"
+    baseUrl: "http://172.24.91.85",
+    version: "/api/v1"
 };
 ```
 
